@@ -118,6 +118,7 @@ alias ip3="ipython3"
 alias bp3="bpython3"
 alias nv="nvim"
 alias g1="git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
-alias gtd="https://github.com/danMurphy/"
+alias gg="cd /mnt/c/Program\/Files/Google/Chrome/Application | ./chrome.exe" 
+alias gtd="gg https://github.com"
     # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

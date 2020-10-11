@@ -36,6 +36,15 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mattn/emmet-vim'
 Plug 'airblade/vim-rooter'
 Plug 'vim-scripts/Peasy'
+Plug 'kshenoy/vim-signature'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
+Plug 'tomtom/tcomment_vim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'severin-lemaignan/vim-minimap'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'justinmk/vim-sneak'
+Plug 'tpope/vim-surround'
 
 " Initialize plugin system
 call plug#end()
