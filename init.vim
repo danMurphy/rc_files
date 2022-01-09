@@ -6,25 +6,87 @@
 : set smarttab
 : set softtabstop=4
 : set mouse=a
+: set colorcolumn=100
+syntax on
+
+"Installed Plugins 
 
 call plug#begin()
 
-# Plug 'https://github.com/vim-airline/vim-airline' "Status bar
-# Plug 'https://github.com/preservim/nerdtree'  "Nerdtree
-# Plug 'https://github.com/tpope/vim-commentary' "For commenting gcc & gc
-# Plug 'https://github.com/tpope/vim-surround' "Surrounding  cs change / yss to wrap
-# Plug 'https://github.com/ap/vim-css-color'  "CSS color previewer
-# Plug 'https://github.com/rafi/awesome-vim-colorschemes'  "Retro color scheme
-# Plug 'https://github.com/ryanoasis/vim-devicons'  "Developer icons
-# Plug 'https://github.com/tc50cal/vim-terminal' "Vim terminal
-# Plug 'https://github.com/mg979/vim-visual-multi' "Vim multiple cursors Crtl-N
-# Plug 'https://github.com/preservim/tagbar' "Tagbar
-# Plug 'shougo/deoplete.nvim' "Auto complete
-# Plug 'https://github.com/apcountryman/godlygeek-tabular'
-Plug 'https://github.com/iamcco/markdown-preview.nvim'
-
+ Plug 'https://github.com/vim-airline/vim-airline' "Status bar
+ Plug 'https://github.com/preservim/nerdtree'  "Nerdtree
+ Plug 'https://github.com/tpope/vim-commentary' "For commenting gcc & gc
+ Plug 'https://github.com/tpope/vim-surround' "Surrounding  cs change / yss to wrap
+ Plug 'https://github.com/ap/vim-css-color'  "CSS color previewer
+ Plug 'https://github.com/rafi/awesome-vim-colorschemes'  "Retro color scheme
+ Plug 'https://github.com/ryanoasis/vim-devicons'  "Developer icons
+ Plug 'https://github.com/tc50cal/vim-terminal' "Vim terminal
+ Plug 'https://github.com/mg979/vim-visual-multi' "Vim multiple cursors Crtl-N
+ Plug 'https://github.com/preservim/tagbar' "Tagbar
+ Plug 'shougo/deoplete.nvim' "Auto complete
+ Plug 'https://github.com/apcountryman/godlygeek-tabular'
+ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+ Plug 'https://github.com/junegunn/limelight.vim'
+ Plug 'https://github.com/junegunn/goyo.vim'
+ Plug 'gruvbox-community/gruvbox'
+ Plug 'nvim-lua/plenary.nvim'
+ Plug 'nvim-telescope/telescope.nvim'
+ Plug 'https://github.com/jisaacks/GitGutter'
+ Plug 'https://github.com/lewis6991/gitsigns.nvim'
 call plug#end()
 
+"Cursor Change Config
+
+let mapleader=" "
+let maplocalleader=" "
+
+" Use a line cursor within insert mode and a block cursor everywhere else.
+"
+" Using iTerm2? Go-to preferences / profile / colors and disable the smart bar
+" cursor color. Then pick a cursor and highlight color that matches your theme.
+" That will ensure your cursor is always visible within insert mode.
+"
+" Reference chart of values:
+"   Ps = 0  -> blinking block.
+"   Ps = 1  -> blinking block (default).
+"   Ps = 2  -> steady block.
+"   Ps = 3  -> blinking underline.
+"   Ps = 4  -> steady underline.
+"   Ps = 5  -> blinking bar (xterm).
+"   Ps = 6  -> steady bar (xterm).
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+colorscheme gruvbox
+set background=dark
+
+" Specific colorscheme settings (must come after setting your colorscheme).
+if (g:colors_name == 'gruvbox')
+  if (&background == 'dark')
+    hi Visual cterm=NONE ctermfg=NONE ctermbg=237 guibg=#3a3a3a
+  else
+    hi Visual cterm=NONE ctermfg=NONE ctermbg=228 guibg=#f2e5bc
+    hi CursorLine cterm=NONE ctermfg=NONE ctermbg=228 guibg=#f2e5bc
+    hi ColorColumn cterm=NONE ctermfg=NONE ctermbg=228 guibg=#f2e5bc
+  endif
+endif
+
+" Enable 24-bit true colors if your terminal supports it.
+if (has("termguicolors"))
+  " https://github.com/vim/vim/issues/993#issuecomment-255651605
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
+  set termguicolors
+endif
+
+
+" Limelight Config
+
+let g:limelight_conceal_ctermfg=244
+
+
+" NERDtree Key Remap
 
 let g:NERDTreeDirArrowExpandable=""
 
@@ -67,7 +129,7 @@ let g:mkdp_open_ip = ''
 
 " specify browser to open preview page
 " default: ''
-let g:mkdp_browser = ''
+let g:mkdp_browser = 'chrome'
 
 " set to 1, echo preview page url in command line when open preview page
 " default is 0
@@ -124,3 +186,4 @@ let g:mkdp_page_title = '「${name}」'
 " recognized filetypes
 " these filetypes will have MarkdownPreview... commands
 let g:mkdp_filetypes = ['markdown']
+
